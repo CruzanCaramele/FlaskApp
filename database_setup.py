@@ -56,3 +56,10 @@ class Room(Base):
 	university = relationship(University)
 
 
+#create an instance of create_engine class
+#and point to the database to be used
+engine = create_engine("sqlite:///gotroom.db")
+
+#goes into the database and adds our new tables
+Base.metadata.create_all(engine)
+
