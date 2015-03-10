@@ -57,4 +57,4 @@ vacantRoom4 = Room(owner_name = "Mitt Romney", size = "220sqft", description = "
 session.add(vacantRoom4)
 session.commit()
 
-
+print "added menu items!"
