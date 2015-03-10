@@ -7,7 +7,7 @@ from database_setup import Base, University, Room
 
 
 #create connection to database
-engine = create_engine("sqlite:///restaurantmenu.db")
+engine = create_engine("sqlite:///gotroom.db")
 Base.metadata.bind=engine
 DBSession = sessionmaker(bind=engine)
 session=DBSession()
@@ -52,12 +52,12 @@ def newRoom(university_id):
 
 @app.route("/university/<int:university_id>/<int:room_id>/edit/")
 def editRoom(university_id, room_id):
-	return "This page will be for editing a particular room in a university %s" % room_id
+	return "This page will be for editing a particular room in a university %s"  % room_id
 
 
 @app.route("/university/<int:university_id>/<int:room_id>/delete/")
 def deleteRoom(university_id, room_id):
-	return "This page will be for deleting a room %s" %s room_id
+	return "This page will be for deleting a room %s" % room_id
 
 
 
