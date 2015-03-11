@@ -21,16 +21,28 @@ app = Flask(__name__)
 @app.route("/")
 @app.route("/university/")
 def showUniversities():
+	#get all universities from university table
+	universities = session.query(University).all()
 	return render_template("universities.html", universities=universities)
 
 
-@app.route("/university/new/")
+#add a new university
+@app.route("/university/new/", methods=["GET", "POST"])
 def newUniversity():
-	return render_template("newuni.html")
+	if request.method == "POST":
+		newUniversity = University(name=request.form["newUni"], city=request.form["newCity"])
+		session.add(newUniversity)
+		session.commit()
+		return redirect(url_for("showUniversities"))
+	else:
+		return render_template("newuni.html")
 
 
-@app.route("/university/<int:university_id>/edit/")
+@app.route("/university/<int:university_id>/edit/", methods=["GET", "POST"])
 def editUniversity(university_id):
+	#editedUni = session.query(University).filter_by(university_id=university.id)
+
+	#if method == "POST"
 	return render_template("edituni.html", university=editedUni)
 
 
