@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="utf8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<title>Universities</title>
+		<link href='http://fonts.googleapis.com/css?family=Dosis' rel='stylesheet' type='text/css'>
+		<link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
+		<link rel="stylesheet" type="text/css" href="css/styles.css">
+	</head>
+<body>
+	<h1>Universities</h1>
+	</br>
+	<a href="{{url_for('newUniversity')}}">
+		<h3>Add a New University</h3>
+	</a>
+	
+	{% for university in universities %}
+		<a href="{{url_for('showRooms', university_id=university.id)}}">
+			<p>{{university.name}}</p>
+		</a>
+		
+		</br>
+	{% endfor %}
+</body>
+</html>
