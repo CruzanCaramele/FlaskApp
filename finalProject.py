@@ -38,17 +38,31 @@ def newUniversity():
 		return render_template("newuni.html")
 
 
+#edit an existing university
 @app.route("/university/<int:university_id>/edit/", methods=["GET", "POST"])
 def editUniversity(university_id):
-	#editedUni = session.query(University).filter_by(university_id=university.id)
+	editedUni = session.query(University).filter_by(id=university_id).one()
+	if request.method == "POST":
+		if request.form["newEditedName"]:
+			editedUni.name = request.form["newEditedName"]
+		session.add(editedUni)
+		session.commit()
+		return redirect(url_for("showUniversities"))
+	else:
+		return render_template("edituni.html", university=editedUni)
 
-	#if method == "POST"
-	return render_template("edituni.html", university=editedUni)
 
-
-@app.route("/university/<int:university_id>/delete/")
+#delete an existing university
+@app.route("/university/<int:university_id>/delete/", methods=["GET", "POST"])
 def deleteUniversity(university_id):
-	return render_template("deleteuni.html", university=deletedUni)
+	uniToDelete = session.query(University).filter_by(id=university_id).one()
+	if request.method == "POST":
+		session.delete(uniToDelete)
+		session.commit()
+		return redirect(url_for("showUniversities"))
+	else:
+		return render_template("deleteuni.html", university=uniToDelete)
+
 
 
 #show rooms for a university
