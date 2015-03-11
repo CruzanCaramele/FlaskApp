@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="utf8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<title>New University</title>
+		<link href='http://fonts.googleapis.com/css?family=Dosis' rel='stylesheet' type='text/css'>
+		<link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
+		<link rel="stylesheet" type="text/css" href="css/styles.css">
+	</head>
+<body>
+	<h1>New University</h1>
+
+	<form action="{{url_for('newUniversity')}}" method="POST">
+		<p>University Name:</p>
+		<input type="text" size="30" name="newUni">
+			
+		<p>City Location:</p>
+		<input type="text" size="30" name="newCity">
+		<input type="submit" value="Add">
+	</form>
+
+</body>
+</html>
