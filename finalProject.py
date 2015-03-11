@@ -21,43 +21,47 @@ app = Flask(__name__)
 @app.route("/")
 @app.route("/university/")
 def showUniversities():
-	return "This page shows all the universities and their cities"
+	return render_template("universities.html", universities=universities)
 
 
 @app.route("/university/new/")
 def newUniversity():
-	return "This page will be for adding new Universities"
+	return render_template("newuni.html")
 
 
 @app.route("/university/<int:university_id>/edit/")
 def editUniversity(university_id):
-	return "This page will be for editing a university %s" % university_id
+	return render_template("edituni.html", university=editedUni)
 
 
 @app.route("/university/<int:university_id>/delete/")
 def deleteUniversity(university_id):
-	return "This page will be for deleting a university %s" % university_id
+	return render_template("deleteuni.html", university=deletedUni)
 
 
+#show rooms for a university
 @app.route("/university/<int:university_id>/")
 @app.route("/university/<int:university_id>/rooms/")
 def showRooms(university_id):
-	return "This page will be for showing rooms for  a university %s" % university_id
+	return render_template("rooms.html", rooms=rooms, university=university)
 
 
+#create a new room for a particular university
 @app.route("/university/<int:university_id>/rooms/new/")
 def newRoom(university_id):
-	return "This page will be for adding a new room for a university %s" % university_id
+	return render_template("newroom.html", university=university)
 
 
+#edit a room
 @app.route("/university/<int:university_id>/<int:room_id>/edit/")
 def editRoom(university_id, room_id):
-	return "This page will be for editing a particular room in a university %s"  % room_id
+	return render_template("editroom.html", university_id=university_id, room_id=room_id, room=roomToEdit)
 
 
+#delete a room 
 @app.route("/university/<int:university_id>/<int:room_id>/delete/")
 def deleteRoom(university_id, room_id):
-	return "This page will be for deleting a room %s" % room_id
+	return render_template("deleteroom.html",  room=roomToDelete)
 
 
 
