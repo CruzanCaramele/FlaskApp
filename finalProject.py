@@ -27,7 +27,7 @@ def showUniversities():
 
 
 #add a new university
-@app.route("/university/new/", methods=["GET", "POST"])
+@app.route("/university/new/", methods=["GET", "POST"] )
 def newUniversity():
 	if request.method == "POST":
 		newUniversity = University(name=request.form["newUni"], city=request.form["newCity"])
@@ -75,9 +75,22 @@ def showRooms(university_id):
 
 
 #create a new room for a particular university
-@app.route("/university/<int:university_id>/rooms/new/")
+@app.route("/university/<int:university_id>/rooms/new/", methods=["GET", "POST"])
 def newRoom(university_id):
-	return render_template("newroom.html", university=university)
+	if request.method == "POST":
+		aNewRoom = Room(owner_name=request.form["ownerName"], size=request.form["roomSize"]\
+				       , description=request.form["roomDescription"], price=request.form["roomPrice"]\
+				        , address=request.form["adress"], owner_number=request.form["phoneNum"], \
+				        university_id=university_id)
+
+		session.add(aNewRoom)
+		session.commit()
+
+		return redirect(url_for("showRooms", university_id=university_id))
+	else:
+		return render_template("newroom.html", university_id=university_id)
+
+	
 
 
 #edit a room
