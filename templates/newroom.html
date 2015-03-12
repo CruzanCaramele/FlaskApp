@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="utf8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<title>New Room</title>
+		<link href='http://fonts.googleapis.com/css?family=Dosis' rel='stylesheet' type='text/css'>
+		<link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
+		<link rel="stylesheet" type="text/css" href="css/styles.css">
+	</head>
+<body>
+	<h1>Post New Room</h1>
+	<form action="{{url_for('newRoom', university_id=university_id)}}" method="POST">
+		<input type="text" size="30" name="ownerName" placeholder="Your Name">
+		<input type="text" size="30" name="roomSize" placeholder="Room Size">
+		<input type="text" size="30" name="roomDescription" placeholder="Room Details">
+		<input type="text" size="30" name="roomPrice" placeholder="Price Per Month">
+		<input type="text" size="30" name="adress" placeholder="Adress">
+		<input type="text" size="30" name="phoneNum" placeholder="Contact Number">
+		<input type="submit" size="25" value="Post Room">
+	</form>
+</body>
+</html>
