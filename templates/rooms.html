@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="utf8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<title>Rooms</title>
+		<link href='http://fonts.googleapis.com/css?family=Dosis' rel='stylesheet' type='text/css'>
+		<link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
+		<link rel="stylesheet" type="text/css" href="css/styles.css">
+	</head>
+<body>
+	<h1>{{university.name}}</h1>
+
+	{% with messages = get_flashed_messages() %}
+
+	{% if messages %}
+		<ul>
+			{% for message in messages %}
+				<li>
+					<strong>{{message}}</strong>
+				</li>
+
+			{% endfor %}
+		</ul>
+
+
+	{% endif %}	
+
+	{% endwith %}
+
+	<a href="{{url_for('newRoom', university_id=university.id)}}">Create New Room</a>
+	</br>
+	</br>
+
+	{% for room in rooms %}
+		<p>{{room.description}}</p>
+		
+		<p>{{room.owner_name}}</p>
+		
+		<p>{{room.size}}</p>
+		
+		<p>{{room.price}}</p>
+		
+		<p>{{room.owner_number}}</p>
+		
+		<p>{{room.address}}</p>
+		</br>
+		<a href="{{url_for('editRoom', university_id=university.id, room_id=room.id)}}">Edit</a>
+		</br>
+		<a href="{{url_for('deleteRoom', university_id=university.id, room_id=room.id)}}">Delete</a>
+		
+	{% endfor %}
+</body>
+</html>
