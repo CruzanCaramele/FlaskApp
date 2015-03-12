@@ -69,6 +69,8 @@ def deleteUniversity(university_id):
 @app.route("/university/<int:university_id>/")
 @app.route("/university/<int:university_id>/rooms/")
 def showRooms(university_id):
+	university = session.query(University).filter_by(id=university_id).one()
+	rooms = session.query(Room).filter_by(university_id=university_id).all()
 	return render_template("rooms.html", rooms=rooms, university=university)
 
 
