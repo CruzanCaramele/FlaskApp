@@ -34,22 +34,25 @@
 	</br>
 
 	{% for room in rooms %}
-		<p>{{room.description}}</p>
-		
-		<p>{{room.owner_name}}</p>
-		
-		<p>{{room.size}}</p>
-		
-		<p>{{room.price}}</p>
-		
-		<p>{{room.owner_number}}</p>
-		
-		<p>{{room.address}}</p>
+		{{room.owner_name}}
 		</br>
-		<a href="{{url_for('editRoom', university_id=university.id, room_id=room.id)}}">Edit</a>
+		{{room.description}}
 		</br>
-		<a href="{{url_for('deleteRoom', university_id=university.id, room_id=room.id)}}">Delete</a>
-		
+		{{room.address}}
+		</br>
+		{{room.price}}
+		</br>
+		{{room.owner_number}}
+		</br>
+		{{room.size}}
+		<div>
+			<a href="{{url_for('editRoom', university_id=university.id, room_id=room.id)}}">Edit</a>
+			
+			<a href="{{url_for('deleteRoom', university_id=university.id, room_id=room.id)}}">Delete</a>
+		</div>
+		</br>
+		</br>
+
 	{% endfor %}
 </body>
 </html>
