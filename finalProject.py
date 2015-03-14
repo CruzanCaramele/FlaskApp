@@ -93,9 +93,31 @@ def newRoom(university_id):
 	
 
 
-#edit a room
-@app.route("/university/<int:university_id>/<int:room_id>/edit/")
+#edit a room in apartuclar university
+@app.route("/university/<int:university_id>/<int:room_id>/edit/", methods=["GET", "POST"])
 def editRoom(university_id, room_id):
+	roomToEdit = session.query(Room).filter_by(id=room_id).one()
+	if request.method == "POST":
+		if request.form["ownerName"]:
+			roomToEdit.owner_name = request.form["ownerName"]
+		if request.form["roomSize"]:
+			roomToEdit.size = request.form["roomSize"]
+		if request.form["roomDescription"]:
+			roomToEdit.description = request.fom["roomDescription"]
+		if request.form["roomPrice"]:
+			roomToEdit.price = request.form["roomPrice"]
+		if request.form["adress"]:
+			roomToEdit.address = request.form["adress"]
+		if request.form["phoneNum"]:
+			roomToEdit.owner_number = request.form["phoneNum"]
+		session.add(roomToEdit)
+		session.commit()
+		return redirect(url_for("showRooms", university_id=university_id))
+	else:
+		return render_template("editroom.html", university_id=university_id, room_id=room_id, room=roomToEdit)
+
+		
+
 	return render_template("editroom.html", university_id=university_id, room_id=room_id, room=roomToEdit)
 
 
