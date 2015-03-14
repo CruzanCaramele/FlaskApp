@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="utf8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<title>Edit Room</title>
+		<link href='http://fonts.googleapis.com/css?family=Dosis' rel='stylesheet' type='text/css'>
+		<link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
+		<link rel="stylesheet" type="text/css" href="css/styles.css">
+	</head>
+<body>
+	<h1>Edit Room Details</h1>
+	<form action="{{url_for('editRoom', university_id=university_id, room_id=room_id)}}" method="POST">
+		<input type="text" size="30" name="ownerName" placeholder="{{room.owner_name}}">
+		<input type="text" size="30" name="roomSize" placeholder="{{room.size}}">
+		<input type="text" size="30" name="roomDescription" placeholder="{{room.description}}">
+		<input type="text" size="30" name="roomPrice" placeholder="{{room.price}}">
+		<input type="text" size="30" name="adress" placeholder="{{room.address}}">
+		<input type="text" size="30" name="phoneNum" placeholder="{{room.owner_number}}">
+		<input type="submit" size="30" value="Edit">
+		<a href="{{url_for('showRooms', university_id=university_id)}}">Cancel</a>
+	</form>
+</body>
+</html>
