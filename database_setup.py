@@ -35,6 +35,14 @@ class University(Base):
 	name = Column(String(250), nullable=False)
 	city = Column(String(80), nullable=False)
 
+	@property
+	def serialize(self):
+		#Returns object data in easilty serializable format
+		return{
+			"name": self.name,
+			"city": self.city,
+			"id": self.id,
+		}
 
 
 class Room(Base):
@@ -55,6 +63,19 @@ class Room(Base):
 	owner_number = Column(String(15))
 	university_id = Column(Integer, ForeignKey("university.id"))
 	university = relationship(University)
+
+	@property
+	def serialize(self):
+		#Returns object data in easilty serializable format
+		return{
+			"owner_name": self.owner_name,
+			"size": self.size,
+			"description": self.description,
+			"price": self.price,
+			"address": self.address,
+			"owner_number": self.owner_number,
+			"id": self.id
+		}
 
 
 #create an instance of create_engine class
