@@ -18,6 +18,7 @@ session=DBSession()
 app = Flask(__name__)
 
 
+
 @app.route("/")
 @app.route("/university/")
 def showUniversities():
@@ -33,6 +34,10 @@ def newUniversity():
 		newUniversity = University(name=request.form["newUni"], city=request.form["newCity"])
 		session.add(newUniversity)
 		session.commit()
+
+		#feedback to user
+		flash("new university added")
+
 		return redirect(url_for("showUniversities"))
 	else:
 		return render_template("newuni.html")
@@ -47,6 +52,10 @@ def editUniversity(university_id):
 			editedUni.name = request.form["newEditedName"]
 		session.add(editedUni)
 		session.commit()
+
+		#feedback to user
+		flash("University Successfully Edited")
+
 		return redirect(url_for("showUniversities"))
 	else:
 		return render_template("edituni.html", university=editedUni)
@@ -59,6 +68,10 @@ def deleteUniversity(university_id):
 	if request.method == "POST":
 		session.delete(uniToDelete)
 		session.commit()
+
+		#feedback to user
+		flash("University Successfully Deleted")
+
 		return redirect(url_for("showUniversities"))
 	else:
 		return render_template("deleteuni.html", university=uniToDelete)
@@ -86,6 +99,9 @@ def newRoom(university_id):
 		session.add(aNewRoom)
 		session.commit()
 
+		#feedback to user
+		flash("New Room Created")		
+
 		return redirect(url_for("showRooms", university_id=university_id))
 	else:
 		return render_template("newroom.html", university_id=university_id)
@@ -112,6 +128,10 @@ def editRoom(university_id, room_id):
 			roomToEdit.owner_number = request.form["phoneNum"]
 		session.add(roomToEdit)
 		session.commit()
+
+		#feedback to user
+		flash("Room Successfully Edited")	
+
 		return redirect(url_for("showRooms", university_id=university_id))
 	else:
 		return render_template("editroom.html", university_id=university_id, room_id=room_id, room=roomToEdit)
@@ -128,10 +148,37 @@ def deleteRoom(university_id, room_id):
 	if request.method == "POST":
 		session.delete(roomToDelete)
 		session.commit()
+
+		#feedback to user
+		flash("Room Successfully Deleted")	
+
 		return redirect(url_for("showRooms", university_id=university_id))
 	else:
 		return render_template("deleteroom.html", university_id=university_id, room_id=room_id, room=roomToDelete)
 	
+
+#API Endpoints for GET Requests
+
+#JSON data for list of all universitites
+@app.route("/university/JSON/")
+def showUniversitiesJSON():
+	universities = session.query(University).all()
+	return jsonify(universitites=[university.serialize for university in universities])
+
+
+#JSON data for rooms in a university
+@app.route("/university/<int:university_id>/rooms/JSON")
+def showRoomsJSON(university_id):
+	university = session.query(University).filter_by(id=university_id).one()
+	rooms = session.query(Room).filter_by(university_id=university_id).all()
+	return jsonify(rooms=[room.serialize for room in rooms])
+
+#JSON data for a single room
+@app.route("/university/<int:university_id>/rooms/<int:room_id>/JSON/")
+def singleRoomJSON(university_id, room_id):
+	university = session.query(University).filter_by(id=university_id).one()
+	singleRoom = session.query(Room).filter_by(id=room_id).one()
+	return jsonify(room=[singleRoom.serialize])
 
 
 
