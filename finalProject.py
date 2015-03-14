@@ -122,13 +122,16 @@ def editRoom(university_id, room_id):
 
 
 #delete a room 
-@app.route("/university/<int:university_id>/<int:room_id>/delete/")
+@app.route("/university/<int:university_id>/<int:room_id>/delete/", methods=["GET", "POST"])
 def deleteRoom(university_id, room_id):
-	return render_template("deleteroom.html",  room=roomToDelete)
-
-
-
-
+	roomToDelete = session.query(Room).filter_by(id=room_id).one()
+	if request.method == "POST":
+		session.delete(roomToDelete)
+		session.commit()
+		return redirect(url_for("showRooms", university_id=university_id))
+	else:
+		return render_template("deleteroom.html", university_id=university_id, room_id=room_id, room=roomToDelete)
+	
 
 
 
