@@ -41,7 +41,7 @@ def newUniversity():
 		return redirect(url_for("showUniversities"))
 	else:
 		return render_template("newuni.html")
-
+		
 
 #edit an existing university
 @app.route("/university/<int:university_id>/edit/", methods=["GET", "POST"])
@@ -50,6 +50,8 @@ def editUniversity(university_id):
 	if request.method == "POST":
 		if request.form["newEditedName"]:
 			editedUni.name = request.form["newEditedName"]
+		if request.form["newEditedCity"]:
+			editedUni.city = request.form["newEditedCity"]
 		session.add(editedUni)
 		session.commit()
 
