@@ -11,6 +11,7 @@
 	</head>
 <body>
 	<h1>Edit University</h1>
+
 	<form action="{{url_for('editUniversity', university_id=university.id)}}" method="POST">
 		<p>Name:</p>
 		<input type="text" size="30" name="newEditedName" placeholder="{{university.name}}">
