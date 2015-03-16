@@ -53,24 +53,25 @@
 
 		{% endwith %} 
       </div><!--jumbotron-->
-      {% for university in universities %}
-      <div class="row">
-      
-        <div class="col-md-12">
-	
-		<a href="{{url_for('showRooms', university_id=university.id)}}">
-			<i class="fa fa-university fa-2x">{{university.name}} - {{university.city}}</i>
+          {% for university in universities %}
+	      <div class="row">
+	      
+	        <div class="col-md-12">
+		
+			<a href="{{url_for('showRooms', university_id=university.id)}}">
+				<i class="fa fa-university fa-2x">{{university.name}} - {{university.city}}</i>
 
-		</a>
-		</br>
-		</br>
-		<a href="{{url_for('editUniversity', university_id=university.id)}}"class="btn btn-primary btn-lg" role="button">Edit</a>
-		<a href="{{url_for('deleteUniversity', university_id=university.id)}}" class="btn btn-primary btn-lg" role="button">Delete</a>
-		<hr>
-		</br>	
-		</br>			
+			</a>
+			</br>
+			</br>
+			<a href="{{url_for('editUniversity', university_id=university.id)}}"class="btn btn-primary btn-lg" role="button">Edit</a>
+			<a href="{{url_for('deleteUniversity', university_id=university.id)}}" class="btn btn-primary btn-lg" role="button">Delete</a>
+			<hr>
+			</br>	
+			</br>			
 	{% endfor %}
-        </div><!--col-md-12-->
+	          </div><!--col-md-12-->
+	          </div><!--row-->
 
     </div><!-- /.container -->
 		
