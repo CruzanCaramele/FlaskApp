@@ -1,25 +1,79 @@
 <!DOCTYPE html>
 <html lang="en">
-	<head>
-		<meta charset="utf8">
-		<meta http-equiv="X-UA-Compatible" content="IE=edge">
-		<meta name="viewport" content="width=device-width, initial-scale=1">
-		<title>Edit Room</title>
-		<link href='http://fonts.googleapis.com/css?family=Dosis' rel='stylesheet' type='text/css'>
-		<link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
-		<link rel="stylesheet" type="text/css" href="css/styles.css">
-	</head>
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta name="description" content="off-campus rooms for rent near popular universities in malaysia">
+	<meta name="author" content="Hamza Yahaya">
+	<title>Edit-Room</title>
+
+	<!-- Bootstrap -->
+	<link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
+</head>
 <body>
-	<h1>Edit Room Details</h1>
+	<div class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+		<div class="container">
+			<div class="navbar-header">
+				<button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+					<span class="sr-only">Toggle navigation</span>
+					<span class="icon-bar"></span>
+					<span class="icon-bar"></span>
+					<span class="icon-bar"></span>
+				</button>
+				<a class="navbar-brand" href="{{url_for('showUniversities')}}">Got-Room</a>
+			</div><!--navbar-header-->
+			<div class="collapse navbar-collapse">
+				<ul class="nav navbar-nav">
+					
+				</ul>
+			</div><!--collapse navbar-collapse-->
+		</div>
+	</div><!--navbar-->
+    <div class="container">
+
+      <div class="jumbotron">
+        <h2>Edit Your Room Post Information.</h2>
+        <p class="lead">Make Changes below.</p>
 	<form action="{{url_for('editRoom', university_id=university_id, room_id=room_id)}}" method="POST">
-		<input type="text" size="30" name="ownerName" placeholder="{{room.owner_name}}">
-		<input type="text" size="30" name="roomSize" placeholder="{{room.size}}">
-		<input type="text" size="30" name="roomDescription" placeholder="{{room.description}}">
-		<input type="text" size="30" name="roomPrice" placeholder="{{room.price}}">
-		<input type="text" size="30" name="adress" placeholder="{{room.address}}">
-		<input type="text" size="30" name="phoneNum" placeholder="{{room.owner_number}}">
-		<input type="submit" size="30" value="Edit">
-		<a href="{{url_for('showRooms', university_id=university_id)}}">Cancel</a>
-	</form>
+		<div class="row">
+			<div class="col-md-4">
+				<input type="text" class="form-control" name="ownerName" placeholder="Edit Name">
+			</div>
+
+			<div class="col-md-3">
+				<input type="text" class="form-control" name="phoneNum" placeholder="Edit Contact Number">
+			</div>
+
+			<div class="col-md-5">
+				<input type="text" class="form-control" name="adress" placeholder="Edit Address">
+			</div>
+		</div><!--first row-->
+		</br>
+		<div class="row">
+			<div class="col-md-2">
+				<input type="text" class="form-control" name="roomSize" placeholder="Edit Room Size">
+			</div>
+
+			<div class="col-md-2">
+				<input type="text" class="form-control" name="roomPrice" placeholder="Edit Room Price">
+			</div>
+		</div><!--second row-->
+		</br>
+		<div class="row">
+			<div class="col-md-4" style="height: 100px">
+				<input type="text" class="form-control" name="roomDescription" placeholder="Edit Room Details" style="height: 100%">
+			</div>
+		</div>
+		</br>
+		
+		<input type="submit" value="Make Changes" class="btn btn-success btn-lg" role="button">
+		<a href="{{url_for('showRooms', university_id=university_id)}}" ><input type="url" value="Cancel Changes"  size="11" class="btn btn-danger btn-lg" role="button"></a>
+		
+	</form> 
+
+      </div><!--jumbotron-->
+      </div><!--container-->
 </body>
 </html>

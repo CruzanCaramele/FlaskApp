@@ -6,7 +6,7 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<meta name="description" content="off-campus rooms for rent near popular universities in malaysia">
 	<meta name="author" content="Hamza Yahaya">
-	<title>Got-Room</title>
+	<title>New-Room</title>
 
 	<!-- Bootstrap -->
 	<link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
@@ -37,17 +37,43 @@
         <h2>Rent Out A Room.</h2>
         <p class="lead">Fill in all the details below</p>
 	<form action="{{url_for('newRoom', university_id=university_id)}}" method="POST">
-		<input type="text" size="30" name="ownerName" placeholder="Your Name">
-		<input type="text" size="30" name="roomSize" placeholder="Room Size">
-		<input type="text" size="30" name="roomDescription" placeholder="Room Details">
-		<input type="text" size="30" name="roomPrice" placeholder="Price Per Month">
-		<input type="text" size="30" name="adress" placeholder="Adress">
-		<input type="text" size="30" name="phoneNum" placeholder="Contact Number">
-		<input type="submit" size="25" value="Post Room">
-		<a href="{{url_for('showRooms', university_id=university_id)}}">Cancel</a>
+		<div class="row">
+			<div class="col-md-4">
+				<input type="text" class="form-control" name="ownerName" placeholder="Name">
+			</div>
+
+			<div class="col-md-3">
+				<input type="text" class="form-control" name="phoneNum" placeholder="Contact Number">
+			</div>
+
+			<div class="col-md-5">
+				<input type="text" class="form-control" name="adress" placeholder="Address">
+			</div>
+		</div><!--first row-->
+		</br>
+		<div class="row">
+			<div class="col-md-2">
+				<input type="text" class="form-control" name="roomSize" placeholder="Room Size">
+			</div>
+
+			<div class="col-md-2">
+				<input type="text" class="form-control" name="roomPrice" placeholder="Room Price/Month">
+			</div>
+		</div><!--second row-->
+		</br>
+		<div class="row">
+			<div class="col-md-4" style="height: 100px">
+				<input type="text" class="form-control" name="roomDescription" placeholder="Room Details" style="height: 100%">
+			</div>
+		</div>
+		</br>
+		
+		<input type="submit" value="Post Room" class="btn btn-success btn-lg" role="button">
+		<a href="{{url_for('showRooms', university_id=university_id)}}" ><input type="url" value="Cancel Post"  size="7" class="btn btn-danger btn-lg" role="button"></a>
+		
 	</form> 
 
       </div><!--jumbotron-->
-      </div>
+      </div><!--container-->
 </body>
 </html>
