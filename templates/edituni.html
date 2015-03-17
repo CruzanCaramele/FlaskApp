@@ -40,15 +40,19 @@
 		<div class="container">
 			<div class="row">
 				<div class="col-md-6">
-					<input type="text" size="40" name="newEditedName" placeholder="{{university.name}}">
-				</div>
-					
-				<div class="col-md-6">
-					<input type="text" size="30" name="newEditedCity" placeholder="{{university.city}}">
-					<input type="submit" value="Edit">
-					<a href="{{url_for('showUniversities')}}">Cancel</a>
+					<input type="text" class="form-control" size="40" name="newEditedName" placeholder="{{university.name}}">
 				</div>
 			</div>
+				</br>
+			<div class="row">
+				<div class="col-md-6">
+					<input type="text" class="form-control" size="30" name="newEditedCity" placeholder="{{university.city}}">
+					</br>
+					<input type="submit" value="Edit" class="btn btn-success btn-lg" role="button">
+					<a href="{{url_for('showUniversities')}}" ><input type="url" value="Cancel"  size="2" class="btn btn-danger btn-lg" role="button"></a>
+				</div>
+			</div>
+			
 		</div>
 	</form> 
 
