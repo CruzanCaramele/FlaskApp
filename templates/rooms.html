@@ -12,7 +12,7 @@
 </head>
 <body>
 	<div class="navbar navbar-inverse navbar-fixed-top" role="navigation">
-		<div class="container">
+		<div class="container"> 
 			<div class="navbar-header">
 				<button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
 					<span class="sr-only">Toggle navigation</span>
@@ -56,24 +56,28 @@
 	      <div class="row">
 	      
 	        <div class="col-md-12">
-		
-			{{room.owner_name}}
+			
+			
+			<strong>Owner Name</strong>: {{room.owner_name}}
+
 			</br>
-			{{room.description}}
+			<strong>Contact Number</strong>: {{room.owner_number}}
 			</br>
-			{{room.address}}
+			<strong>Home Address</strong> : {{room.address}}
 			</br>
-			{{room.price}}
+			<strong>Room Price</strong> : {{room.price}}
 			</br>
-			{{room.owner_number}}
+			<strong>Room Size</strong>  : {{room.size}}
 			</br>
-			{{room.size}}
+			<strong>Room Description</strong>: {{room.description}}
 			<div>
+
 			</br>
 				<a href="{{url_for('editRoom', university_id=university.id, room_id=room.id)}}"class="btn btn-primary btn-lg" role="button">Edit</a>
 				
 				<a href="{{url_for('deleteRoom', university_id=university.id, room_id=room.id)}}"class="btn btn-primary btn-lg" role="button">Delete</a>
 			</div>
+			
 			<hr>				
 	{% endfor %}
 	          </div><!--col-md-12-->
