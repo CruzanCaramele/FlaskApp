@@ -30,15 +30,19 @@ def showUniversities():
 #add a new university
 @app.route("/university/new/", methods=["GET", "POST"] )
 def newUniversity():
-	if request.method == "POST":
+	if request.method == "POST" and request.form["newCity"] != "":
 		newUniversity = University(name=request.form["newUni"], city=request.form["newCity"])
 		session.add(newUniversity)
 		session.commit()
 
 		#feedback to user
 		flash("new university added")
-
 		return redirect(url_for("showUniversities"))
+	elif request.method == "POST" and request.form["newCity"] == "":
+		flash("City Must Be Added")
+		return redirect(url_for("newUniversity"))
+
+
 	else:
 		return render_template("newuni.html")
 		
