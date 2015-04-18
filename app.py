@@ -270,10 +270,10 @@ def showRooms(university_id):
 	rooms = session.query(Room).filter_by(university_id=university_id).all()
 	room_poster = getUserInfo(university.user_id)
 
-	if "username" not in login_session or room_poster.id != login_session["user_id"]:
+	if "username" not in login_session:
 		return render_template("publicrooms.html", rooms=rooms, university=university, room_poster=room_poster)
 	else:
-		return render_template("room.html", rooms=rooms, university=university, room_poster=room_poster)
+		return render_template("rooms.html", rooms=rooms, university=university, room_poster=room_poster)
 
 
 
@@ -305,10 +305,13 @@ def newRoom(university_id):
 #edit a room in apartuclar university
 @app.route("/university/<int:university_id>/<int:room_id>/edit/", methods=["GET", "POST"])
 def editRoom(university_id, room_id):
-	roomToEdit = session.query(Room).filter_by(id=room_id).one()
-	
 	if "username" not in login_session:
 		return redirect("login")
+	roomToEdit = session.query(Room).filter_by(id=room_id).one()	
+	university = session.query(University).filter_by(id=university_id).one()
+
+	if login_session["user_id"] != university.user_id:
+		return "<script>function myFunction() {alert('You are not authorized to edit this room. Please create your own in order to edit items.');}</script><body onload='myFunction()''>"
 
 	if request.method == "POST":
 		if request.form["ownerName"]:
@@ -341,10 +344,14 @@ def editRoom(university_id, room_id):
 #delete a room 
 @app.route("/university/<int:university_id>/<int:room_id>/delete/", methods=["GET", "POST"])
 def deleteRoom(university_id, room_id):
-	roomToDelete = session.query(Room).filter_by(id=room_id).one()
-	
 	if "username" not in login_session:
 		return redirect("login")
+
+	roomToDelete = session.query(Room).filter_by(id=room_id).one()
+	university = session.query(University).filter_by(id=university_id).one()
+
+	if login_session["user_id"] != university.user_id:
+		return "<script>function myFunction() {alert('You are not authorized to delete this room.');}</script><body onload='myFunction()''>"
 
 	if request.method == "POST":
 		session.delete(roomToDelete)
