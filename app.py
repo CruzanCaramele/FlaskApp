@@ -166,6 +166,8 @@ def showUniversities():
 #add a new university
 @app.route("/university/new/", methods=["GET", "POST"] )
 def newUniversity():
+	if "username" not in login_session:
+		return redirect("login")
 	if request.method == "POST" and request.form["newCity"] != "":
 		newUniversity = University(name=request.form["newUni"], city=request.form["newCity"])
 		session.add(newUniversity)
@@ -187,6 +189,8 @@ def newUniversity():
 @app.route("/university/<int:university_id>/edit/", methods=["GET", "POST"])
 def editUniversity(university_id):
 	editedUni = session.query(University).filter_by(id=university_id).one()
+	if "username" not in login_session:
+		return redirect("login")
 	if request.method == "POST":
 		if request.form["newEditedName"]:
 			editedUni.name = request.form["newEditedName"]
@@ -207,6 +211,9 @@ def editUniversity(university_id):
 @app.route("/university/<int:university_id>/delete/", methods=["GET", "POST"])
 def deleteUniversity(university_id):
 	uniToDelete = session.query(University).filter_by(id=university_id).one()
+	if "username" not in login_session:
+		return redirect("login")
+
 	if request.method == "POST":
 		session.delete(uniToDelete)
 		session.commit()
@@ -232,6 +239,9 @@ def showRooms(university_id):
 #create a new room for a particular university
 @app.route("/university/<int:university_id>/rooms/new/", methods=["GET", "POST"])
 def newRoom(university_id):
+	if "username" not in login_session:
+		return redirect("login")
+
 	if request.method == "POST":
 		aNewRoom = Room(owner_name=request.form["ownerName"], size=request.form["roomSize"]\
 				       , description=request.form["roomDescription"], price=request.form["roomPrice"]\
@@ -255,6 +265,10 @@ def newRoom(university_id):
 @app.route("/university/<int:university_id>/<int:room_id>/edit/", methods=["GET", "POST"])
 def editRoom(university_id, room_id):
 	roomToEdit = session.query(Room).filter_by(id=room_id).one()
+	
+	if "username" not in login_session:
+		return redirect("login")
+
 	if request.method == "POST":
 		if request.form["ownerName"]:
 			roomToEdit.owner_name = request.form["ownerName"]
@@ -287,6 +301,10 @@ def editRoom(university_id, room_id):
 @app.route("/university/<int:university_id>/<int:room_id>/delete/", methods=["GET", "POST"])
 def deleteRoom(university_id, room_id):
 	roomToDelete = session.query(Room).filter_by(id=room_id).one()
+	
+	if "username" not in login_session:
+		return redirect("login")
+
 	if request.method == "POST":
 		session.delete(roomToDelete)
 		session.commit()
