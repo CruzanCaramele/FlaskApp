@@ -218,6 +218,10 @@ def editUniversity(university_id):
 	editedUni = session.query(University).filter_by(id=university_id).one()
 	if "username" not in login_session:
 		return redirect("login")
+
+	#local permission check for logged in users to edit only their data
+	if editedUni.user_id != login_session['user_id']:
+		return "<script>function myFunction() {alert('You are not authorized to edit this university. Please create your own university in order to edit.');}</script><body onload='myFunction()''>"
 	if request.method == "POST":
 		if request.form["newEditedName"]:
 			editedUni.name = request.form["newEditedName"]
@@ -241,6 +245,10 @@ def deleteUniversity(university_id):
 	if "username" not in login_session:
 		return redirect("login")
 
+#local permission check for logged in users to edit only their data
+	if uniToDelete.user_id != login_session['user_id']:
+		return "<script>function myFunction() {alert('You are not authorized to delete this university');}</script><body onload='myFunction()''>"
+
 	if request.method == "POST":
 		session.delete(uniToDelete)
 		session.commit()
@@ -260,7 +268,13 @@ def deleteUniversity(university_id):
 def showRooms(university_id):
 	university = session.query(University).filter_by(id=university_id).one()
 	rooms = session.query(Room).filter_by(university_id=university_id).all()
-	return render_template("rooms.html", rooms=rooms, university=university)
+	room_poster = getUserInfo(university.user_id)
+
+	if "username" not in login_session or room_poster.id != login_session["user_id"]:
+		return render_template("publicrooms.html", rooms=rooms, university=university, room_poster=room_poster)
+	else:
+		return render_template("room.html", rooms=rooms, university=university, room_poster=room_poster)
+
 
 
 #create a new room for a particular university
