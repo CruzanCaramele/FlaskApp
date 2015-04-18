@@ -26,7 +26,7 @@ CLIENT_ID = json.loads(open('client_secrets.json', 'r').read())['web']['client_i
 #APPLICATION_NAME= "Got Room Application"
 
 #create connection to database
-engine = create_engine("sqlite:///gotroom.db")
+engine = create_engine("sqlite:///gotroomwithusers.db")
 Base.metadata.bind=engine
 DBSession = sessionmaker(bind=engine)
 session=DBSession()
