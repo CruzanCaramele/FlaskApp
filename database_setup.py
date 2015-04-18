@@ -19,6 +19,19 @@ from sqlalchemy import create_engine
 Base = declarative_base()
 
 
+class User(Base):
+	"""this is the users table in orer to implement
+	local permission within the application preventing
+	users from modifying other users data
+	"""
+	__tablename__ = "user"
+
+	id = Column(Integer, primary_key=True)
+	name = Column(String(80), nullable=False)
+	email = Column(String(50), nullable=False)
+	picture = Column(String(250))
+
+
 class University(Base):
 	"""
 	this class corresponds to the university table
@@ -34,6 +47,8 @@ class University(Base):
 	id = Column(Integer, primary_key=True)
 	name = Column(String(250), nullable=False)
 	city = Column(String(80), nullable=False)
+	user_id = Column(Integer, ForeignKey("user.id"))
+	user = relationship(User)
 
 	@property
 	def serialize(self):
@@ -63,6 +78,8 @@ class Room(Base):
 	owner_number = Column(String(15))
 	university_id = Column(Integer, ForeignKey("university.id"))
 	university = relationship(University)
+	user_id = Column(Integer, ForeignKey("user.id"))
+	user = relationship(User)
 
 	@property
 	def serialize(self):
@@ -80,7 +97,7 @@ class Room(Base):
 
 #create an instance of create_engine class
 #and point to the database to be used
-engine = create_engine("sqlite:///gotroom.db")
+engine = create_engine("sqlite:///gotroomwithusers.db")
 
 #goes into the database and adds our new tables
 Base.metadata.create_all(engine)
