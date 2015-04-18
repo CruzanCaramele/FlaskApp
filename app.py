@@ -184,7 +184,10 @@ def gdisconnect():
 def showUniversities():
 	#get all universities from university table
 	universities = session.query(University).all()
-	return render_template("universities.html", universities=universities)
+	if "username" not in login_session:
+		return render_template("publicuniversities.html", universities=universities)
+	else:
+		return render_template("universities.html", universities=universities)
 
 
 #add a new university
@@ -265,7 +268,7 @@ def showRooms(university_id):
 def newRoom(university_id):
 	if "username" not in login_session:
 		return redirect("login")
-
+	room = session.query(Room).filter_by(id=university_id).one()
 	if request.method == "POST":
 		aNewRoom = Room(owner_name=request.form["ownerName"], size=request.form["roomSize"]\
 				       , description=request.form["roomDescription"], price=request.form["roomPrice"]\
