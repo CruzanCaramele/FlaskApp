@@ -7,7 +7,7 @@ app = Flask(__name__)
 #import module for ORM
 from sqlalchemy import create_engine
 from sqlalchemy.orm import sessionmaker
-from database_setup import Base, University, Room
+from database_setup import Base, University, Room, User
 
 #New Imports to help create anti-forgery state token
 #login_session works like a dictionary
@@ -112,6 +112,11 @@ def gconnect():
   	login_session['picture'] = data['picture']
   	login_session['email'] = data['email']
 
+  	#check if user exits
+  	user_id - getUserID(login_session["email"])
+  	if not user_id:
+  		user_id = createUser(login_session)
+  	login_session["user_id"] = user_id
 
   	output = ''
   	output +='<h1>Welcome, '
@@ -123,6 +128,25 @@ def gconnect():
   	flash("you are now logged in as %s"%login_session['username'])
   	print "done!"
   	return output
+
+#helper functions and creating user
+def createUser(login_session):
+  	newUser = User(name = login_session['username'], email = login_session['email'], picture = login_session['picture'])
+  	session.add(newUser)
+  	session.commit()
+  	user = session.query(User).filter_by(email = login_session['email']).one()
+  	return user.id
+
+def getUserInfo(user_id):
+  	user = session.query(User).filter_by(id = user_id).one()
+  	return user
+
+def getUserID(email):
+  	try:
+      		user = session.query(User).filter_by(email = email).one()
+      		return user.id
+  	except:
+      		return None
 
 @app.route('/gdisconnect')
 def gdisconnect():
@@ -169,7 +193,7 @@ def newUniversity():
 	if "username" not in login_session:
 		return redirect("login")
 	if request.method == "POST" and request.form["newCity"] != "":
-		newUniversity = University(name=request.form["newUni"], city=request.form["newCity"])
+		newUniversity = University(name=request.form["newUni"], city=request.form["newCity"], user_id =login_session["user_id"])
 		session.add(newUniversity)
 		session.commit()
 
@@ -246,7 +270,7 @@ def newRoom(university_id):
 		aNewRoom = Room(owner_name=request.form["ownerName"], size=request.form["roomSize"]\
 				       , description=request.form["roomDescription"], price=request.form["roomPrice"]\
 				        , address=request.form["adress"], owner_number=request.form["phoneNum"], \
-				        university_id=university_id)
+				        university_id=university_id, user_id=room.user_id)
 
 		session.add(aNewRoom)
 		session.commit()
