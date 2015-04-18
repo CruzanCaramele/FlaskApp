@@ -1,0 +1,29 @@
+
+<html>
+<head>
+	  <!--LOAD PRE-REQUISITES FOR GOOGLE SIGN IN -->
+
+	  <script src="//ajax.googleapis.com/ajax/libs/jquery/1.8.2/jquery.min.js"></script>
+	  <script src="//apis.google.com/js/platform.js?onload=start" async defer> </script>
+
+	  <!-- END PRE-REQUISITES FOR GOOGLE SIGN IN -->	
+</head>
+<body>
+
+<!-- GOOGLE PLUS SIGN IN-->
+	<div id="signInButton">
+	          <span class="g-signin"
+		            data-scope="openid email"
+		            data-clientid="114123321760-8g2j9kurjv6j1sd502526q9m9a85cj8v.apps.googleusercontent.com"
+		            data-redirecturi="postmessage"
+		            data-accesstype="offline"
+		            data-cookiepolicy="single_host_origin"
+		            data-callback="signInCallback"
+		            data-approvalprompt="force">
+	          </span>	
+	</div>
+
+	<div id="result"></div>
+
+</body>
+</html>
