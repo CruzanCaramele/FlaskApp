@@ -5,6 +5,11 @@ from sqlalchemy import create_engine
 from sqlalchemy.orm import sessionmaker
 from database_setup import Base, University, Room
 
+#New Imports to help create anti-forgery state token
+#login_session works like a dictionary
+from flask import session as login_session
+import random, string
+
 
 #create connection to database
 engine = create_engine("sqlite:///gotroom.db")
@@ -18,6 +23,11 @@ session=DBSession()
 app = Flask(__name__)
 
 
+@app.route("/login")
+def showLogin():
+	state = "".join(random.choice(string.ascii_uppercase + string.digits) for x in xrange(32))
+	login_session["state"] = state
+	return "The current session state is %s" % login_session["state"]
 
 @app.route("/")
 @app.route("/university/")
