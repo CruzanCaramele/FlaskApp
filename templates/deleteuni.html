@@ -1,49 +1,57 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-	<meta charset="utf-8">
-	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<meta name="description" content="off-campus rooms for rent near popular universities in malaysia">
-	<meta name="author" content="Hamza Yahaya">
-	<title>Got-Room</title>
-
-	<!-- Bootstrap -->
-	<link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
-	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
-</head>
-<body>
-	<div class="navbar navbar-inverse navbar-fixed-top" role="navigation">
-		<div class="container">
-			<div class="navbar-header">
-				<button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-					<span class="sr-only">Toggle navigation</span>
-					<span class="icon-bar"></span>
-					<span class="icon-bar"></span>
-					<span class="icon-bar"></span>
-				</button>
-				<a class="navbar-brand" href="{{url_for('showUniversities')}}">Got-Room</a>
-			</div><!--navbar-header-->
-			<div class="collapse navbar-collapse">
-				<ul class="nav navbar-nav">
-					<li class="active"><a href="{{url_for('newUniversity')}}">New University</a></li>
+{% extends "universities.html" %}
+{% block navcontent %}
+				<ul class="nav navbar-nav navbar-right">
+					<li class=""><a href="{{url_for('gdisconnect')}}">
+								<i class="fa fa-sign-out"></i>
+							Log Out
+							</a>
+					</li>
 				</ul>
-			</div><!--collapse navbar-collapse-->
-		</div>
-	</div><!--navbar-->
+{% endblock %}
+{% block content%}
+
     <div class="container">
 
-      <div class="jumbotron">
-        <h1>Delete {{university.name}} ?</h1>
+      <div class="jumbotron text-center">
+        <h3>Delete {{university.name}} ?</h3>
         <p class="lead">{{university.name}} will be deleted out of the database permanently.</p>
 	<form action="{{url_for('deleteUniversity', university_id=university.id)}}" method="POST">
-
-		<input class="btn btn-default btn-lg btn-block btn-danger" type="submit" value="Delete">
+		<a type="button" href="{{url_for('showUniversities')}}" class="btn btn-primary">Cancel</a>
+		<a type="button">
+			<input type="submit" class="btn btn-primary btn-danger" value="Delete">
+		</a>
 	</form> 
-	</br>
-		<a href="{{url_for('showUniversities')}}" class="btn btn-default btn-lg btn-block btn-success" type="submit" value="Cancel">Cancel</a>
+						
+		
 
       </div><!--jumbotron-->
 
-</body>
-</html>
+{% endblock %}
+{% block footer %}
+<br>
+<div class="container footer-login">
+            <div class="row text-center">
+                <div class="col-md-4">
+                    <span class="copyright">Copyright &copy; Got Room 2015</span>
+                </div>
+                <div class="col-md-4">
+                    <ul class="list-inline social-buttons">
+                        <li><a href="https://twitter.com/Got_Room" target="_blank"><i class="fa fa-twitter"></i></a>
+                        </li>
+                        <li><a href="https://www.facebook.com/gotRoompage/timeline" target="_blank"><i class="fa fa-facebook"></i></a>
+                        </li>
+                        
+                    </ul>
+                </div>
+                <div class="col-md-4">
+                    <ul class="list-inline quicklinks">
+                        <li><a href="#">Privacy Policy</a>
+                        </li>
+                        <li><a href="#">Terms of Use</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+</div>
+{% endblock %}

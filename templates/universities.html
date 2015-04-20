@@ -40,7 +40,7 @@
 				<ul class="nav navbar-nav navbar-right">
 					<li class=""><a href="{{url_for('newUniversity')}}">Add University</a></li>
 				</ul>
-												
+
 			{% endblock %}
 			</div><!--collapse navbar-collapse-->
 		</div>
@@ -80,7 +80,7 @@
 			</br>
 			</br>
 			<a type="button" href="{{url_for('editUniversity', university_id=university.id)}}"class="btn btn-primary">Edit</a>
-			<a type="button" href="{{url_for('deleteUniversity', university_id=university.id)}}" class="btn btn-primary">Delete</a>
+			<a type="button" href="{{url_for('deleteUniversity', university_id=university.id)}}" class="btn btn-primary btn-danger">Delete</a>
 			<hr>
 			</br>	
 			</br>			
