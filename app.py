@@ -35,7 +35,7 @@ session=DBSession()
 
 
 
-@app.route("/login")
+@app.route("/login", methods=["GET", "POST"])
 def showLogin():
 	#anti-forgery state token	
 	state = "".join(random.choice(string.ascii_uppercase + string.digits) for x in xrange(32))
