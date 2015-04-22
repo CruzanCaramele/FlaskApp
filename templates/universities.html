@@ -12,6 +12,13 @@
 	<link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
 	<link rel=stylesheet type=text/css href="{{ url_for('static', filename='styles.css') }}">
+	
+
+	 <!-- Custom Fonts -->
+	<link href="http://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet" type="text/css">
+	<link href='http://fonts.googleapis.com/css?family=Kaushan+Script' rel='stylesheet' type='text/css'>
+	<link href='http://fonts.googleapis.com/css?family=Droid+Serif:400,700,400italic,700italic' rel='stylesheet' type='text/css'>
+	<link href='http://fonts.googleapis.com/css?family=Roboto+Slab:400,100,300,700' rel='stylesheet' type='text/css'>
 </head>
 <body>
 	<div class="navbar navbar-inverse navbar-fixed-top" role="navigation">
@@ -25,7 +32,7 @@
 				</button>
 
 				<a class="navbar-brand" href="{{url_for('showUniversities')}}">
-				<span class="glyphicon glyphicon-home" aria-hidden="true"></span> Got-Room
+				<span class="glyphicon glyphicon-home" aria-hidden="true"></span> G O T R O O M
 				</a>
 			</div><!--navbar-header-->
 			<div class="collapse navbar-collapse">
@@ -50,7 +57,7 @@
 {% block content %}
       <div class="jumbotron text-center">
         <h2>Find or Rent Out Rooms Near Your University.</h2>
-        <p class="lead">This is where you can find off-campus rooms near around your university area.</p>
+        <h3 class="lead">This is where you can find off-campus rooms near around your university area.</h3>
 		{% with messages = get_flashed_messages() %}
 
 		{% if messages %}

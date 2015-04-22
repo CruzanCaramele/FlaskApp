@@ -39,19 +39,18 @@
 				</div>
 				<div class="col-md-12">
 					
-					<p><b>Owner: </b>{{ room.owner_name}}</p>
+					<p><b>Description: </b>{{ room.description}}</p>
 					
 					<img class="img-responsive" src="{{ url_for('static', filename=room.picture)}}" alt="room photo">
+					<br>
+
+					<p><b>Owner Name: </b>{{ room.owner_name }}</p>
 
 					<p><b>Owner Contact: </b>{{ room.owner_number }}</p>
 					
 					<p><b>Room Price: </b>RM{{ room.price }} /month</p>	
 
 					<p><b>Room size: </b>{{ room.size }}sqft</p>
-
-					<p><b>Room Description: </b>{{ room.description }}</p>
-				
-			
 			
 			<hr>
 
