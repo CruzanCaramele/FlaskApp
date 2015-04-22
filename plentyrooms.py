@@ -30,13 +30,15 @@ university1 = University(user_id=1, name = "Multimedia University", city = "Cybe
 session.add(university1)
 session.commit()
 
-room2 = Room(user_id=1, owner_name = "Michelle Obama", description = "Master Room with attached bathroom and aircon", price = "$750.50", address = "Domain Villa , Jalan Technocrat", owner_number = "+60123445234", university = university1)
+room2 = Room(user_id=1, owner_name = "Michelle Obama", description = "Master Room with attached bathroom and aircon", price = "$750.50", address = "Domain Villa , Jalan Technocrat", owner_number = "+60123445234", university = university1, \
+	picture="")
 
 session.add(room2)
 session.commit()
 
 
-room1 = Room(user_id=1, owner_name = "Mitt Romney", description = "Master Room with attached bathroom and bath-tub and aircon", price = "$850.50", address = "Cyberria Condo , Jalan Technocrat", owner_number = "+60103805234", university = university1)
+room1 = Room(user_id=1, owner_name = "Mitt Romney", description = "Master Room with attached bathroom and bath-tub and aircon", price = "$850.50", address = "Cyberria Condo , Jalan Technocrat", owner_number = "+60103805234", university = university1, \
+	picture="")
 
 session.add(room1)
 session.commit()
@@ -49,12 +51,13 @@ session.add(university2)
 session.commit()
 
 
-room1 = Room(user_id=1, owner_name = "Hilary Clinton", description = "Middle Room with attached bathroom and bath-tub and aircon", price = "$450.50", address = "Cyberria Condo , Jalan Persiaran MMU", owner_number = "+60103805333", university = university2)
+room1 = Room(user_id=1, owner_name = "Hilary Clinton", description = "Middle Room with attached bathroom and bath-tub and aircon", price = "$450.50", address = "Cyberria Condo , Jalan Persiaran MMU", owner_number = "+60103805333", university = university2, \
+	picture="")
 
 session.add(room1)
 session.commit()
 
-room2 = Room(user_id=1, owner_name = "Dick Chaney", description = "Small Room with  aircon", price = "$250.50", address = "Cyberria Condo , Jalan Technocrat2", owner_number = "+60189765234", university = university2)
+room2 = Room(user_id=1, owner_name = "Dick Chaney", description = "Small Room with  aircon", price = "$250.50", address = "Cyberria Condo , Jalan Technocrat2", owner_number = "+60189765234", university = university2, picture="")
 
 session.add(room2)
 session.commit()

@@ -76,6 +76,7 @@ class Room(Base):
 	price = Column(String(10))
 	address = Column(String(250))
 	owner_number = Column(String(15))
+	picture = Column(String(250))
 	university_id = Column(Integer, ForeignKey("university.id"))
 	university = relationship(University)
 	user_id = Column(Integer, ForeignKey("user.id"))
