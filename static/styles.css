@@ -7,6 +7,12 @@ a{
 }
 
 
+.img-responsive {
+	width: 660px;
+	height: 370px;
+}
+
+
 
 #signInButton {
 	margin-top: 300px;
