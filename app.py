@@ -9,6 +9,16 @@ from sqlalchemy import create_engine
 from sqlalchemy.orm import sessionmaker
 from database_setup import Base, University, Room, User
 
+
+### Import and config for picture upload ####
+import os
+from werkzeug import secure_filename
+UPLOAD_FOLDER = 'static/'
+ALLOWED_EXTENSIONS = set(['txt', 'pdf', 'png', 'jpg', 'jpeg', 'gif'])
+app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER 
+
+
+
 #New Imports to help create anti-forgery state token
 #login_session works like a dictionary
 from flask import session as login_session
@@ -276,6 +286,10 @@ def showRooms(university_id):
 		return render_template("rooms.html", rooms=rooms, university=university, room_poster=room_poster)
 
 
+### Determine if the fileuploaded it's allowed ###
+def allowed_file(filename):
+    	return '.' in filename and \
+           	filename.rsplit('.', 1)[1] in ALLOWED_EXTENSIONS 
 
 #create a new room for a particular university
 @app.route("/university/<int:university_id>/rooms/new/", methods=["GET", "POST"])
@@ -284,8 +298,12 @@ def newRoom(university_id):
 		return redirect("login")
 	room = session.query(Room).filter_by(id=university_id).one()
 	if request.method == "POST":
+		file = request.files['file']
+		if file and allowed_file(file.filename):
+			filename = secure_filename(file.filename)
+			file.save(os.path.join(app.config['UPLOAD_FOLDER'], filename))
 		aNewRoom = Room(owner_name=request.form["ownerName"], size=request.form["roomSize"]\
-				       , description=request.form["roomDescription"], price=request.form["roomPrice"]\
+				       , picture=filename, description=request.form["roomDescription"], price=request.form["roomPrice"]\
 				        , address=request.form["adress"], owner_number=request.form["phoneNum"], \
 				        university_id=university_id, user_id=room.user_id)
 
