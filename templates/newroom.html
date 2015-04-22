@@ -16,7 +16,7 @@
       <div class="jumbotron">
         <h2>Rent Out A Room.</h2>
         <p class="lead">Fill in all the details below</p>
-	<form action="{{url_for('newRoom', university_id=university_id)}}" method="POST">
+	<form action="{{url_for('newRoom', university_id=university_id)}}" method="POST" enctype='multipart/form-data'>
 		<div class="row">
 			<div class="col-md-4">
 				<input type="text" class="form-control" name="ownerName" placeholder="Name">
@@ -45,6 +45,12 @@
 			<div class="col-md-4" style="height: 100px">
 				<input type="text" class="form-control" name="roomDescription" placeholder="Room Details" style="height: 100%">
 			</div>
+			</br>
+			<div class="input-group input-group-lg">
+				  <span class="input-group-addon" id="sizing-addon1">Picture:</span>
+				  <input type="file" class="form-control" name='file' aria-describedby="sizing-addon1">
+			</div>
+
 		</div>
 		</br>
 			<a type="button" href="{{url_for('showRooms', university_id=university_id)}}">

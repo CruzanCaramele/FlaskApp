@@ -15,7 +15,7 @@
     <div class="container">
 {% block content %}
       <div class="jumbotron">
-        <h2>Rooms Available Around {{university.name}}.</h2>
+        <h2 class="text-center">Rooms Available Around {{university.name}}.</h2>
 		{% with messages = get_flashed_messages() %}
 
 		{% if messages %}
@@ -35,34 +35,46 @@
       </div><!--jumbotron-->
 	</br>
 
-	{% for room in rooms %}
-	      <div class="row">
-	      
-	        <div class="col-md-12">
-			
-			
-			<strong>Owner Name</strong>: {{room.owner_name}}
+<div class="row main-content">
+	<div class="col-md-2"></div>
+	<div class="col-md-8">
+		{% for room in rooms  %}
+			<div class="row">
+				<div class="col-md-8">
+					<h4><b>Address: </b>{{ room.address }}</h4>
+				</div>
+				<div class="col-md-12">
+					
+					<p><b>Owner: </b>{{ room.owner_name}}</p>
+					
+					<img class="img-responsive" src="{{ url_for('static', filename=room.picture)}}" alt="room photo">
 
-			</br>
-			<strong>Contact Number</strong>: {{room.owner_number}}
-			</br>
-			<strong>Home Address</strong> : {{room.address}}
-			</br>
-			<strong>Room Price</strong> : {{room.price}}
-			</br>
-			<strong>Room Size</strong>  : {{room.size}}
-			</br>
-			<strong>Room Description</strong>: {{room.description}}
-			<div>
+					<p><b>Owner Contact: </b>{{ room.owner_number }}</p>
+					
+					<p><b>Room Price: </b>RM{{ room.price }} /month</p>	
+
+					<p><b>Room size: </b>{{ room.size }}sqft</p>
+
+					<p><b>Room Description: </b>{{ room.description }}</p>
 
 			</br>
 				<a type="button" href="{{url_for('editRoom', university_id=university.id, room_id=room.id)}}"class="btn btn-primary">Edit</a>
 				<a type="button" href="{{url_for('deleteRoom', university_id=university.id, room_id=room.id)}}" class="btn btn-primary btn-danger">Delete</a>
 				
-			</div>
 			
-			<hr>				
-	{% endfor %}
-	          </div><!--col-md-12-->
-	          </div><!--row-->
+			
+			<hr>
+
+				</div>	
+
+
+				
+			</div>
+		{% endfor %}
+		
+	</div>
+	<div class="col-md-2"></div>
+</div>
+
+
 {% endblock %}
