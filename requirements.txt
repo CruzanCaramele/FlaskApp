@@ -6,7 +6,6 @@ Flask-Script==2.0.5
 -e git://github.com/kvesteri/flask-storage.git@9a8ac964a0144b505807d98fb055c0d5e23a98e7#egg=Flask_Storage-master
 -e git://github.com/FelixLoether/flask-uploads@9e1266fcc09b344caf3b8f4859304813d17448d0#egg=Flask_Uploads-master
 Jinja2==2.7.2
-Landscape-Client==14.12
 Mako==1.0.1
 MarkupSafe==0.18
 PAM==0.4.2
