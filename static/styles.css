@@ -12,13 +12,23 @@ a {
 	height: 340px;
 }
 
+.gbutton {
+    padding-top: 320px;
+}
+
 body {
     
     font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
 }
 
 
-
+hr
+{
+    background-color: #eee;
+    border: 0 none;
+    color: #eee;
+    height: 1px;
+}
 
 h1,
 h2,
@@ -195,3 +205,10 @@ ul.social-buttons li a:active {
     border-radius: 0px;
 }
 
+#signInButton {
+    padding-top: 320px;
+}
+
+#paditToo {
+    padding-top: 300px;
+}
