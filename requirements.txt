@@ -12,12 +12,8 @@ ProxyTypes==0.9
 PyYAML==3.10
 SQLAlchemy==0.8.4
 SecretStorage==2.0.0
-Twisted-Core==13.2.0
-Twisted-Names==13.2.0
-Twisted-Web==13.2.0
 Werkzeug==0.9.4
 alembic==0.7.5.post2
-apt-xapian-index==0.45
 argparse==1.2.1
 bleach==1.4.1
 blinker==1.3
