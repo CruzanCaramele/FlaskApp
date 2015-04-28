@@ -61,4 +61,3 @@ room2 = Room(user_id=1, owner_name = "Dick Chaney", description = "Small Room wi
 
 session.add(room2)
 session.commit()
-
