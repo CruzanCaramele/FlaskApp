@@ -4,6 +4,13 @@ from flask import Flask, render_template, request, redirect, url_for, flash, jso
 #of the runnung application as the argument
 app = Flask(__name__)
 
+
+#when running on heroku, any errors will be printed on heroku logs
+import sys
+import logging
+app.logger.addHandler(logging.StreamHandler(sys.stdout))
+app.logger.setLevel(logging.ERROR)
+
 #import module for ORM
 from sqlalchemy import create_engine
 from sqlalchemy.orm import sessionmaker
