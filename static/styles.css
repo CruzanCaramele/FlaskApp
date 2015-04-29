@@ -1,6 +1,3 @@
-a {
-	text-decoration: none;
-}
 .footer-login {
 	margin-top: 200px;	
 
@@ -19,18 +16,21 @@ a {
     padding-top: 320px;
 }
 
+
+a {
+    text-decoration: none;
+}
+
 body {
     
     font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
 }
 
 
-hr
-{
-    background-color: #eee;
-    border: 0 none;
-    color: #eee;
-    height: 1px;
+hr {
+    border-width: 1px;
+    border-top-color: #BCBBBB;
+
 }
 
 h1,
@@ -196,11 +196,6 @@ ul.social-buttons li a:active {
     font-family: "Lucida Console", Monaco, monospace;
     color: #d4a432;
 }
-
-
-
-
-
 
 
 
