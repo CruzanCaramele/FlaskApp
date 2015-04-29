@@ -45,18 +45,21 @@ Vagrant is the software that configures the VM and lets you share files between 
 
 <br>
 
-2. Then, you'll need to clone this repository to your local machine, this will have all the requirements needed to run the application as the
-requirements are installed within the virtual machine.
+2. Then, you'll need to clone [this](https://github.com/CruzanCaramele/Vagrant.git) repository to your local machine, this will have all the requirements needed to run the application as the requirements are installed within the virtual machine. A folder called vagrant will be 
+downloaded to your computer upon cloning the repository.
 
-3. Go to the vagrant directory in the cloned repository, then open a terminal window and type `$ vagrant up` to launch your virtual machine. This will take some time in your first run, because it needs to install some dependencies.
+3. The you will need to clone [this](https://github.com/CruzanCaramele/Got-Room.git) repository. Move the downloaded folder called 
+Got-Room into the Vagrant folder you downloaded in step 2.
 
-4. Once it is up and running, type `$ vagrant ssh` to log into it. This will log your terminal in to the virtual machine, and you'll get a Linux shell prompt. 
+4. Go to the vagrant directory in the cloned repository, then open a terminal window and type `$ vagrant up` to launch your virtual machine. This will take some time in your first run, because it needs to install some dependencies.
 
-5. On your virtual machine, go to <b>/vagrant/Got-Room</b> directory, then type `$ python app.py`. This will launch the application.
+5. Once it is up and running, type `$ vagrant ssh` to log into it. This will log your terminal in to the virtual machine, and you'll get a Linux shell prompt. 
 
-6. You can check out the page from your browser at <b>[http://localhost:5000](http://localhost:5000)</b>.
+6. On your virtual machine, go to <b>/vagrant/Got-Room</b> directory, then type `$ python app.py`. This will launch the application.
 
-7. If the terminal says that it can't find some modules, then open <b>requirements.txt</b> file in the current directory. You will see an instruction on how to install dependencies.
+7. You can check out the page from your browser at <b>[http://localhost:5000](http://localhost:5000)</b>.
+
+8. If the terminal says that it can't find some modules, then open <b>requirements.txt</b> file in the current directory. You will see an instruction on how to install dependencies.
 
 
 ## To Run the Application with Your own Google Credential ID and Secret :
