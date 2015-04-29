@@ -49,7 +49,7 @@ Vagrant is the software that configures the VM and lets you share files between 
 downloaded to your computer upon cloning the repository.
 
 3. The you will need to clone [this](https://github.com/CruzanCaramele/Got-Room.git) repository. Move the downloaded folder called 
-Got-Room into the Vagrant folder you downloaded in step 2.
+Got-Room into the Vagrant folder you downloaded in step 1.
 
 4. Go to the vagrant directory in the cloned repository, then open a terminal window and type `$ vagrant up` to launch your virtual machine. This will take some time in your first run, because it needs to install some dependencies.
 
