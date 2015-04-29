@@ -5,12 +5,6 @@ from flask import Flask, render_template, request, redirect, url_for, flash, jso
 app = Flask(__name__)
 
 
-#when running on heroku, any errors will be printed on heroku logs
-import sys
-import logging
-app.logger.addHandler(logging.StreamHandler(sys.stdout))
-app.logger.setLevel(logging.ERROR)
-
 #import module for ORM
 from sqlalchemy import create_engine
 from sqlalchemy.orm import sessionmaker
@@ -196,11 +190,13 @@ def gdisconnect():
     		response = make_response(json.dumps('Successfully disconnected.'), 200)
    		response.headers['Content-Type'] = 'application/json'
     		return response
+
   	else:
     		# For whatever reason, the given token was invalid.
     		response = make_response(json.dumps('Failed to revoke token for given user.', 400))
     		response.headers['Content-Type'] = 'application/json'
     		return response
+    	
 
 @app.route("/")
 @app.route("/university")
