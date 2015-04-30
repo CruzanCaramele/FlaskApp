@@ -1,8 +1,15 @@
 from flask import Flask, render_template, request, redirect, url_for, flash, jsonify
 
+
+#import for seasurf in order to prevent CSRF
+from flask.ext.seasurf import SeaSurf
+
 #create an instance of Flask class with the name
 #of the runnung application as the argument
 app = Flask(__name__)
+
+#passing the app object back to the extension for seasurf
+csrf = SeaSurf(app)
 
 
 #import module for ORM
@@ -264,9 +271,10 @@ def deleteUniversity(university_id):
 	if "username" not in login_session:
 		return redirect("login")
 
-#local permission check for logged in users to edit only their data
+	#local permission check for logged in users to edit only their data
 	if uniToDelete.user_id != login_session['user_id']:
 		return "<script>function myFunction() {alert('You are not authorized to delete this university');}</script><body onload='myFunction()''>"
+
 
 	if request.method == "POST":
 		session.delete(uniToDelete)
@@ -305,7 +313,10 @@ def allowed_file(filename):
 def newRoom(university_id):
 	if "username" not in login_session:
 		return redirect("login")
-	room = session.query(Room).filter_by(id=university_id).one()
+
+	#obtain the current university where user wants to add a room
+	university = session.query(University).filter_by(id=university_id).one()
+
 	if request.method == "POST":
 		file = request.files['file']
 		if file and allowed_file(file.filename):
@@ -381,6 +392,8 @@ def deleteRoom(university_id, room_id):
 		return "<script>function myFunction() {alert('You are not authorized to delete this room.');}</script><body onload='myFunction()''>"
 
 	if request.method == "POST":
+		#remove associated room picture while deleting a room
+		os.remove(os.path.join(app.config['UPLOAD_FOLDER'], roomToDelete.picture))
 		session.delete(roomToDelete)
 		session.commit()
 
