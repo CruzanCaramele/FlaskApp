@@ -10,6 +10,7 @@ not available on the website already.
 
 ## Main Python Libraries Used in this Project
 - Flask
+- Flask-SeaSurf
 - oauth2clien
 - Jinja2
 - SQLAlchemy
