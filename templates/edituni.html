@@ -17,7 +17,7 @@
         <h2>Edit Name or City Location for {{university.name}}.</h2>
         <p class="lead">You may change both university's name and location or either one .
 	<form action="{{url_for('editUniversity', university_id=university.id)}}" method="POST">
-		<input type="hidden" name="_csrf_token" value="{{ csrf_token() }}">
+		
 		<div class="container">
 			<div class="row">
 			<div class="col-md-2"></div>
