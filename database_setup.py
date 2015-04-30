@@ -15,6 +15,9 @@ from sqlalchemy.orm import relationship
 #end of the file
 from sqlalchemy import create_engine
 
+#import to delete children after parent is deleted
+from sqlalchemy.orm import backref
+
 #this object will help set up when writing the class code
 Base = declarative_base()
 
@@ -78,7 +81,7 @@ class Room(Base):
 	owner_number = Column(String(15))
 	picture = Column(String(250))
 	university_id = Column(Integer, ForeignKey("university.id"))
-	university = relationship(University)
+	university = relationship(University, backref=backref("children", cascade="all,delete"))
 	user_id = Column(Integer, ForeignKey("user.id"))
 	user = relationship(User)
 
