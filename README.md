@@ -4,11 +4,9 @@ This web app is a place where University students can add their universities and
 rent out to other students. 
 
 <br>
-
 This uses Google plus log on to allow signed in users to post rooms to any of the universities or even post a new university that is 
 not available on the website already.
 <br>
-
 
 ## Main Python Libraries Used in this Project
 - Flask
@@ -63,7 +61,7 @@ Got-Room into the Vagrant folder you downloaded in step 1.
 
 
 ## To Run the Application with Your own Google Credential ID and Secret :
-1. Visit <b>[http://console.developers.google.com]</b>(http://console.developers.google.com)
+1. Visit [http://console.developers.google.com](http://console.developers.google.com)
 2. log in with your google username and password
 3. Once logged in, Click the <b>Create Project</b> button 
 4. Give a name for your project and do not change the project ID provided by Google
@@ -76,13 +74,13 @@ Got-Room into the Vagrant folder you downloaded in step 1.
 11. Click <b>Edit Settings</b> and add <b>http://localhost:5000</b> to <b>Authorized Javascript Origins</b>, click update
 12. Click the <b>Download JSON</b> button and save the downloaded file as <b>client_secrets.json</b>
 
-##Update Your Client ID and Client Secrets
+###Update Your Client ID and Client Secrets:
 1.Replace the <b>client_secrets.json</b> file within the <b>Got-Room</b> folder with the one you downloaded on step 12 above
 2.Open the login.html file within <b>Got-Room/templates</b>
 3. replace the  <b>data-clientid</b> on  line 28 with your Client ID from the project you created, save all and run the application.
 
 
-##API Endpoints Access :
+###API Endpoints Access :
 1. http://localhost:5000/university/JSON/
 2. http://localhost:5000/university/1/rooms/JSON  (for rooms within any university)
 3. http://localhost:5000/university/1/rooms/1/JSON/  (for any room within a university)
