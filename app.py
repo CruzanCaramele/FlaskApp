@@ -1,15 +1,10 @@
 from flask import Flask, render_template, request, redirect, url_for, flash, jsonify
 
 
-#import for seasurf in order to prevent CSRF
-from flask.ext.seasurf import SeaSurf
-
 #create an instance of Flask class with the name
 #of the runnung application as the argument
 app = Flask(__name__)
 
-#passing the app object back to the extension for seasurf
-csrf = SeaSurf(app)
 
 
 #import module for ORM
