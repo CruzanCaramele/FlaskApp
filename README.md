@@ -75,8 +75,8 @@ Got-Room into the Vagrant folder you downloaded in step 1.
 12. Click the <b>Download JSON</b> button and save the downloaded file as <b>client_secrets.json</b>
 
 ###Update Your Client ID and Client Secrets:
-1.Replace the <b>client_secrets.json</b> file within the <b>Got-Room</b> folder with the one you downloaded on step 12 above
-2.Open the login.html file within <b>Got-Room/templates</b>
+1. Replace the <b>client_secrets.json</b> file within the <b>Got-Room</b> folder with the one you downloaded on step 12 above
+2. Open the login.html file within <b>Got-Room/templates</b>
 3. replace the  <b>data-clientid</b> on  line 28 with your Client ID from the project you created, save all and run the application.
 
 
