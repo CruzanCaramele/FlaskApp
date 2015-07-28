@@ -101,7 +101,7 @@ class Room(Base):
 
 #create an instance of create_engine class
 #and point to the database to be used
-engine = create_engine("sqlite:///gotroomwithusers.db")
+engine = create_engine('postgresql://catalog:bury148few951@localhost:5432/catalog',echo=True)
 
 #goes into the database and adds our new tables
 Base.metadata.create_all(engine)
