@@ -1,4 +1,5 @@
 from flask import Flask, render_template, request, redirect, url_for, flash, jsonify
+import psycopg2
 
 
 #create an instance of Flask class with the name
@@ -39,7 +40,7 @@ CLIENT_ID = json.loads(open('client_secrets.json', 'r').read())['web']['client_i
 #APPLICATION_NAME= "Got Room Application"
 
 #create connection to database
-engine = create_enginecreate_engine('postgresql://catalog:bury148few951@localhost:5432/catalog',echo=True)
+engine = create_engine('postgresql://catalog:password@localhost/catalog')
 Base.metadata.bind=engine
 DBSession = sessionmaker(bind=engine)
 session=DBSession()
