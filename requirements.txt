@@ -11,7 +11,7 @@ Flask-Stormpath==0.4.0
 Flask-WTF==0.11
 Jinja2==2.7.2
 Landscape-Client==14.12
-Mako==1.0.1
+Mako==1.2.2
 MarkupSafe==0.18
 PAM==0.4.2
 ProxyTypes==0.9
